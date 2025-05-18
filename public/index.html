@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <div class="logo">QuizApp</div>
+                <div class="nav-links">
+                    <a href="#" class="active" id="home-link">Home</a>
+                    <a href="#" id="quizzes-link">Quizzes</a>
+                    <a href="#" id="results-link">Results</a>
+                    <a href="#" id="admin-link" class="admin-only" style="display: none;">Admin Panel</a>
+                    <div class="auth-buttons">
+                        <button id="login-btn" class="auth-link btn btn-outline">Login</button>
+                        <button id="signup-btn" class="auth-link btn btn-primary">Sign Up</button>
+                        <span class="user-link" style="display: none;">
+                            Welcome, <span id="username-display"></span>!
+                            <button onclick="logout()" class="btn btn-outline">Logout</button>
+                        </span>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section id="home-section" class="active-section">
+                <div class="hero">
+                    <h1>Test Your Knowledge</h1>
+                    <p>Take quizzes on various topics and challenge yourself!</p>
+                    <button class="btn btn-primary" id="start-quiz-btn">Start Quiz</button>
+                </div>
+            </section>
+
+            <section id="quizzes-section">
+                <h2>Available Quizzes</h2>
+                <div class="quizzes-grid" id="quizzes-container">
+                    <!-- Quizzes will be loaded here dynamically -->
+                </div>
+            </section>
+
+            <section id="quiz-section">
+                <div class="quiz-header">
+                    <h2 id="display-quiz-title"></h2>
+                    <div class="timer" id="timer">Time: 00:00</div>
+                </div>
+                <div class="quiz-container">
+                    <div class="question-container">
+                        <p id="question-text"></p>
+                        <div class="options" id="options-container">
+                            <!-- Options will be loaded here dynamically -->
+                        </div>
+                    </div>
+                    <div class="quiz-controls">
+                        <button class="btn btn-outline" id="prev-btn">Previous</button>
+                        <button class="btn btn-primary" id="next-btn">Next</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="results-section">
+                <h2>Your Results</h2>
+                <div class="results-container" id="results-list">
+                    <!-- Results will be loaded here dynamically -->
+                </div>
+            </section>
+
+            <section id="admin-section">
+                <div class="admin-header">
+                    <h2>Admin Panel</h2>
+                    <button class="btn btn-primary" id="create-quiz-btn">Create New Quiz</button>
+                </div>
+                
+                <div class="quiz-form-container" style="display: none;">
+                    <form id="quiz-form" class="admin-form">
+                        <div class="form-group">
+                            <label for="input-quiz-title">Quiz Title</label>
+                            <input type="text" id="input-quiz-title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-quiz-description">Description</label>
+                            <textarea id="input-quiz-description" name="description" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-quiz-time-limit">Time Limit (minutes)</label>
+                            <input type="number" id="input-quiz-time-limit" name="time_limit" min="1" required>
+                        </div>
+                        
+                        <div id="questions-container">
+                            <!-- Questions will be added here dynamically -->
+                        </div>
+                        
+                        <button type="button" class="btn btn-outline" id="add-question-btn">Add Question</button>
+                        <button type="submit" class="btn btn-primary">Save Quiz</button>
+                    </form>
+                </div>
+
+                <div class="quizzes-list">
+                    <h3>Existing Quizzes</h3>
+                    <div id="admin-quizzes-container">
+                        <!-- Existing quizzes will be loaded here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div class="modal" id="auth-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">Login</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <form id="auth-form">
+                    <div class="form-group" id="username-field" style="display: none;">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submit-auth">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html> 
